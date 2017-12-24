@@ -11,20 +11,21 @@ def main():
     print(data[['max', 'min', 'diff']])
     return data['diff'].sum()
 
+
 def main2():
     data = pd.read_table('aoc_2017-2_data.txt', header=None)
+    results = []
     for row in data.iterrows():
-        # combos = list(permutations(row[1]))
-        # print(combos)
-        pass
-    for pair in permutations(data.ix[0]):
-        print(pair)
-
-    # return results
-
+        for pair in permutations(row[1], 2):
+            if pair[0] % pair[1] == 0:
+                # print(pair[0], pair[1], pair[0]/pair[1])
+                results.append(pair[0] / pair[1])
+            else:
+                pass
+    return sum(results)
 
 
 if __name__ == '__main__':
     # result = main()
     result = main2()
-    # print(result)
+    print(result)
